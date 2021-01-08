@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+СОздать задание
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning mt-2"> 
+            <h4>Создать задание</h3>
+        </div>
+        <form method="post"> 
+            {% csrf_token %}
+            {{form.title}}
+            {{form.task}}
+            {{form.task_date}}
+            {{form.status}}
+            {{form.user_id}}
+            <button type="submit" class="btn btn-outline-success">Отправить</button>
+        </form>
+{% endblock %}

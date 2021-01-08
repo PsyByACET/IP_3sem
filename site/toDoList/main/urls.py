@@ -5,8 +5,9 @@ from . import views
 app_name = "users"
 
 urlpatterns = [
-    path('', views.index, name="main"),
+    path('', views.index, name='main'),
     path('about', views.about),
+    path('create', views.create, name='create'),
     path('users', views.usersView.as_view()),
     path('users/<int:pk>', views.usersView.as_view())
 ]
