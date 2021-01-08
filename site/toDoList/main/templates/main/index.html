@@ -1,13 +1,15 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Главная страница</title>
-</head>
-<body>
-    <h1>Оно работает!</h1>
-    
-    
-</body>
-</html>
+{% extends 'main/base.html' %}
+
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    {% for el in tasks %}
+        <div class="alert alert-warning mt-2"> 
+            <h4>{{el.user_id}}</h3>
+            <h3>{{el.title}}</h3>
+            <p>{{el.task}}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
