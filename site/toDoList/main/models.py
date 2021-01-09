@@ -17,6 +17,7 @@ class task(models.Model):
     task = models.TextField('Описание')
     task_date = models.DateField('Дата задания')
     status = models.BooleanField('Статус задачи')
+    points = models.IntegerField('Количество очков', default=100)
     # user_id = models.IntegerField('Код пользователя')
     user_id = models.ForeignKey(
         users,

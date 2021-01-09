@@ -5,11 +5,34 @@
 {% endblock %}
 
 {% block content %}
+
+    <form action="" method="get">
+        {{form.as_p}}
+        <input type="submit" value="Поиск" class="btn btn-outline-success">
+    </form>
+
+    <h1>Активные задачи</h1>
     {% for el in tasks %}
-        <div class="alert alert-warning mt-2"> 
-            <h4>{{el.user_id}}</h3>
-            <h3>{{el.title}}</h3>
-            <p>{{el.task}}</p>
-        </div>
+        {% if el.status != True %}
+            <div class="alert alert-warning mt-2"> 
+                <h4>{{el.user_id}}</h3>
+                <h3>{{el.title}}</h3>
+                <p>{{el.task}}</p>
+                <p>Стоимость в очках {{el.points}}</p>            
+                <p class="text-right">{{el.task_date}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <h1>Выполненные задачи</h1>
+    {% for el in tasks %}
+        {% if el.status == True %}
+            <div class="alert alert-warning mt-2"> 
+                <h4>{{el.user_id}}</h3>
+                <h3>{{el.title}}</h3>
+                <p>{{el.task}}</p>    
+                <p>Стоимость в очках {{el.points}}</p>     
+                <p class="text-right">{{el.task_date}}</p>
+            </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}
