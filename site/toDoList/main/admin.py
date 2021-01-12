@@ -5,3 +5,4 @@ admin.site.register(users)
 admin.site.register(task)
 admin.site.register(score)
 
+

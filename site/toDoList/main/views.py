@@ -5,11 +5,19 @@ from rest_framework.views import APIView
 from rest_framework import viewsets, permissions, generics
 from .models import users, task
 from .serializers import usersSerializer, taskSerializer
-from .forms import taskForm, pointsFilterForm
+from .forms import taskForm, pointsFilterForm, taskFindForm
 from .models import task, users, score
 
 def index(request):
-    tasks = task.objects.all()
+
+    formFind = taskFindForm(request.GET)
+
+    search_query = request.GET.get('search', '')
+    if search_query:
+        tasks = task.objects.filter(title__icontains = search_query)
+    else:
+        tasks = task.objects.all()
+
     form = pointsFilterForm(request.GET)
     if form.is_valid():
         if form.cleaned_data['min_points']:
@@ -34,18 +42,14 @@ def create(request):
     form = taskForm()
     context = {'form':form}
     return render(request, 'main/create.html', context)
-
-
-
+    
 
 class usersView(APIView):
     def get(self, request):
         userss = users.objects.all()
         # return Response({"tasks": tasks})
         serializer = usersSerializer(userss, many=True)
-
-        return Response({"userss": serializer.data})
-    
+        return Response({"userss": serializer.data})  
 class taskViewSet(viewsets.ModelViewSet):
     queryset = task.objects.all()
     serializer_class = taskSerializer

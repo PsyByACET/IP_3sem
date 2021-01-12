@@ -6,10 +6,24 @@
 
 {% block content %}
 
-    <form action="" method="get">
-        {{form.as_p}}
-        <input type="submit" value="Поиск" class="btn btn-outline-success">
-    </form>
+    <div class="find-filter mt-2">
+        <div class="filter" style="display: flex; justify-content: space-around">
+            <div class="points">
+                <form action="" method="get" style="text-align: center;">
+                    {{form.as_p}}
+                    <input type="submit" value="Поиск" class="btn btn-outline-success">
+                </form>
+            </div>
+            <div class="find">
+                <form action="" method="get" style="text-align: center;">
+                    <input type="search" name="search" placeholder="Поиск" class="form-control" aria-label="Search">
+                    <button type="submit" class="btn btn-outline-success mt-5">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
 
     <h1>Активные задачи</h1>
     {% for el in tasks %}
