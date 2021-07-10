@@ -1,0 +1,73 @@
+
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+{% block content %}
+    <div class="cards-log">
+        <div class="cards-log__card">
+            <h4>Пользователь</h4>
+            <h5>Логин: Maruka</h5>
+            <h5>Пароль: islamelit</h5>
+        </div>
+        <div class="cards-log__card">
+            <h4>Оператор</h4>
+            <h5>Логин: iruka</h5>
+            <h5>Пароль: islamelit</h5>
+        </div>
+        <div class="cards-log__card">
+            <h4>Админ</h4>
+            <h5>Логин: admin</h5>
+            <h5>Пароль: admin</h5>
+        </div>
+    </div>
+    
+    {% if user.is_authenticated %}
+    <h1>You Name {{user.username}} </h1>
+    <div class="find-filter mt-2">
+        <div class="filter" style="display: flex; justify-content: space-around">
+            <div class="points">
+                <form action="" method="get" style="text-align: center;">
+                    {{form.as_p}}
+                    <input type="submit" value="Поиск" class="btn btn-outline-success">
+                </form>
+            </div>
+            <div class="find">
+                <form action="" method="get" style="text-align: center;">
+                    <input type="search" name="search" placeholder="Поиск" class="form-control" aria-label="Search">
+                    <button type="submit" class="btn btn-outline-success mt-5">Поиск</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    
+
+    <h1>Активные задачи</h1>
+    {% for el in tasks %}
+        {% if el.status != True %}
+            <div class="alert alert-warning mt-2"> 
+                <h4>{{el.user_id}}</h3>
+                <h3>{{el.title}}</h3>
+                <p>{{el.task}}</p>
+                <p>Стоимость в очках {{el.points}}</p>            
+                <p class="text-right">{{el.task_date}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    <h1>Выполненные задачи</h1>
+    {% for el in tasks %}
+        {% if el.status == True %}
+            <div class="alert alert-warning mt-2"> 
+                <h4>{{el.user_id}}</h3>
+                <h3>{{el.title}}</h3>
+                <p>{{el.task}}</p>    
+                <p>Стоимость в очках {{el.points}}</p>     
+                <p class="text-right">{{el.task_date}}</p>
+            </div>
+        {% endif %}
+    {% endfor %}
+    {% endif %}
+{% endblock %}

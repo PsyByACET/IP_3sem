@@ -1,0 +1,55 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Регистрация</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/main.css' %}">
+</head>
+<body>
+    {% comment %} <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid d-flex"></div>
+            <a class="btn btn-info float-right mr-5" href="/">Вернуться</a>
+        </div> 
+    </nav> {% endcomment %}
+    <div class="form_container regist">
+        <h1>Регистрация</h1>
+        <form method="post" action="{% url 'tasks:register' %}">
+            {% csrf_token %}
+
+            {% if form.errors %}
+            <p>Ошибка в форме!</p>
+            {% endif %}
+
+            <div class="reg-form">
+                <div class="reg-form__field">
+                    {% comment %} <label>{{form.username.label}}</label> {% endcomment %}
+                    <label>{{form.username.label}}</label>
+                    <br>
+                    {{form.username}}
+                </div>
+
+                <div class="reg-form__field">
+                    <label>{{form.password1.label}}</label>
+                    <br>
+                    {{form.password1}}
+                </div>
+                
+                <div class="reg-form__field">
+                    <label>{{form.password2.label}}</label>
+                    <br>
+                    {{form.password2}}
+                </div>
+                <br>
+                <input class="button btn btn-primary " type="submit" value="Зарегистрироваться">
+                <br><br>
+                <a class="btn btn-danger " href="/">Вернуться</a>
+            </div>
+
+        </form>
+    </div>
+</body>
+</html>

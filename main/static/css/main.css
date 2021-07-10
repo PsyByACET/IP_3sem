@@ -1,0 +1,41 @@
+.regist {
+  margin: 0 auto;
+  text-align: center;
+}
+.regist .reg-form {
+  text-align: center;
+  margin: 0 auto;
+}
+
+.cards-log {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+.cards-log .cards-log__card {
+  border-radius: 5px;
+  border: 2px solid #ffc107;
+  background-color: #fff;
+  padding: 10px 15px;
+}
+
+@media print {
+  .navbar {
+    display: none;
+  }
+
+  .btn {
+    display: none;
+  }
+
+  .list {
+    background-color: white;
+    border: none;
+    margin: 0;
+    padding: 0;
+    color: black;
+  }
+}

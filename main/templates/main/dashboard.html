@@ -1,0 +1,35 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+Главная страница
+{% endblock %}
+
+<script src="{% static 'js/main.js' %}">
+{% block content %}
+    {% if user.is_authenticated %}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <div style="width: 400px; margin: 0 auto;">
+        <canvas id="myChart" width="200" height="200"></canvas>
+    </div>
+    <script>
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+           labels: [{% for el in tasks %}'{{el.title}}',{% endfor %}],
+        datasets: [{
+            label: 'My First Dataset',
+            data: [{% for el in tasks %}{{el.points}},{% endfor %}],
+            backgroundColor: [
+            'rgb(255, 99, 132)',
+            'rgb(54, 162, 235)',
+            'rgb(255, 205, 86)'
+            ],
+            hoverOffset: 4
+        }]  
+        },
+    });
+
+    </script>
+    {% endif %}
+{% endblock %}

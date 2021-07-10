@@ -1,0 +1,33 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+СОздать задание
+{% endblock %}
+
+{% block content %}
+    <div class="alert alert-warning mt-2"> 
+            <h4>Создать задание</h3>
+        </div>
+        <form method="post"> 
+            {% csrf_token %}
+            <label for="title">Задание</label>
+            {{form.title}} <br>
+            <label for="task">Описание задания</label>
+            {{form.task}}<br>
+            <label for="task_date">Дата получения задания</label>
+            {{form.task_date}}<br>
+            <label for="user_name">Пользователь</label>
+            {{form.user_id}}<br>
+            <label for="comment_id">Комментарий</label>
+            {{form.comment_id}}<br>
+            <label for="prioriry_id">Приоритет</label>
+            {{form.prioriry_id}}<br>
+            <label for="list_id">Группа заданий</label>
+            {{form.list_id}}<br>
+            <label for="event_id">Событие</label>
+            {{form.event_id}}<br>
+            <label for="points">Points</label>
+            {{form.points}}<br>
+            <button type="submit" class="btn btn-outline-success mb-5">Отправить</button>
+        </form>
+{% endblock %}
